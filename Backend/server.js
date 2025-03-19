@@ -13,10 +13,19 @@ app.post("/message", (req,res)=>{
 });
 
 app.get("/table", (req,res)=>{
-    const q = "SELECT * FROM temp"
+    const q = "SELECT * FROM NewSong"
     db.query(q,(err,data)=>{
         if(err) return res.json(err)
         return res.json(data)
+    })
+})
+
+app.get("/songs", (req,res)=>{
+    const q = "SELECT * FROM NewSong"
+    db.query(q,(err,data)=>{
+        if(err) return res.json(err)
+        res.json(data)
+        
     })
 })
 
