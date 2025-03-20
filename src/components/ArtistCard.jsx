@@ -9,6 +9,8 @@ function ArtistList(){
         {name: 'Shawn Mendes', image: 'Shawn-Mendes.jpg'};
         {name: 'Lana Del Ray', image: 'Lana-Del-Ray.jpg'};
         {name: 'Arctic Monkeys', image: 'Arctic Monkeys.jpg'};
+        {name: 'Post Malone', image: 'Post Malone.jpg'};
+
 
     ];
 
