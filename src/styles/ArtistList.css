@@ -1,0 +1,31 @@
+.artist-list-container {
+    position: relative;
+    padding: 40px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+}
+
+.gradients::before, .gradients::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+}
+
+.gradients::before {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #a100ff, #4a00e0);
+    top: 100px;
+    left: 20%;
+}
+
+.gradients::after {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #ff0080, #ff8c00);
+    bottom: 100px;
+    right: 20%;
+}

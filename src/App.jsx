@@ -1,19 +1,16 @@
-import { useState } from 'react';
-import "./App.css";
-import Navbar from "./components/Navbar";
-import HomePage from "./pages/Home";
-import LoginPage from "./pages/Login";
-import Songs from "./pages/Songs";
-import SignUp from "./pages/SignUp";
-import Artist from "./pages/Artist";
+import MainNavbar from './components/Navbar.jsx';
+import ArtistList from './pages/Artist.jsx';
+import CardGrid from './pages/Home';
+import Card from './components/Card.jsx';
 
-function App(){
+function App() {
   return (
-    <div>
-      <Navbar />
-        <h1> Welcome to the Music Website </h1>
-    </div>
+    <>
+      <MainNavbar />
+      <ArtistList/>
+      
+    </>
   );
-};
+}
 
 export default App;
