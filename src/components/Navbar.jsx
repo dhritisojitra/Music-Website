@@ -76,10 +76,9 @@ function MusicNavbar() {
               aria-label="Search"
             />
           </form>
-
           <div className="d-flex align-items-center">
-            <a href="#" className="btn btn-outline-light btn-sm ms-2">
-              <i className="bi bi-person"></i>
+            <a href="#" className="btn btn-outline-light btn-sm ms-2 d-flex align-items-center justify-content-center" style={{ width: "40px", height: "40px", borderRadius: "50%" }}>
+            <i className="bi bi-person-circle" style={{ fontSize: '24px', color: 'white' }}></i>  
             </a>
           </div>
         </div>

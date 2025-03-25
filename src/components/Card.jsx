@@ -3,7 +3,7 @@ import ArtistList from '../pages/Artist';
 
 const Card = ({ image, title, text, link }) => {
   return (
-    <div className="card" style={{ width: '18rem' }}>
+    <div className="card" style={{ width: '22rem' }}>
         <ArtistList/>
         </div>
   );

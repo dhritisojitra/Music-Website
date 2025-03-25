@@ -19,9 +19,9 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-[#1e0a3c] to-[#0d0d0d] min-h-screen text-white font-sans">
+    <div className="bg-gradient-to-b from-[#1e0a3c] to-[#0d0d0d] h-screen w-screen flex flex-col text-white font-sans">
       {/* Navbar */}
-      <nav className="flex items-center justify-between p-6 bg-[#1e0a3c]">
+      <nav className="flex items-center justify-between p-6 bg-[#1e0a3c] w-full">
         <h1 className="text-2xl font-bold">Melodify</h1>
         <div className="space-x-6">
           <a href="#" className="hover:text-purple-400">Home</a>
@@ -37,13 +37,13 @@ const HomePage = () => {
       </nav>
 
       {/* Artists Section */}
-      <section className="p-8">
+      <section className="p-8 w-full flex-grow">
         <h2 className="text-3xl font-bold mb-6">Top Artists</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6 w-full">
           {artists.map((artist, index) => (
             <div
               key={index}
-              className="bg-[#2a1a4b] rounded-2xl shadow-lg flex items-center p-4 gap-4 hover:bg-[#3a2b5c] transition"
+              className="bg-[#2a1a4b] rounded-2xl shadow-lg flex items-center p-4 gap-4 hover:bg-[#3a2b5c] transition w-full"
             >
               <img
                 src={artist.image}
@@ -56,14 +56,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Good Afternoon Cards Section */}
-      <section className="p-8 bg-transparent">
+      {/* Cards Section */}
+      <section className="p-8 w-full flex-grow">
         <h2 className="text-3xl font-bold mb-6">Good Afternoon</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6 w-full">
           {cards.map((card, index) => (
             <div
               key={index}
-              className="bg-[#1f1f1f] rounded-xl p-6 shadow-lg hover:bg-[#292929] transition"
+              className="bg-[#1f1f1f] rounded-xl p-6 shadow-lg hover:bg-[#292929] transition w-full"
             >
               <h4 className="text-xl font-semibold mb-2">{card.title}</h4>
               <p className="mb-4 text-sm text-gray-300">{card.description}</p>
@@ -72,22 +72,6 @@ const HomePage = () => {
               </button>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Made for You */}
-      <section className="p-8">
-        <h2 className="text-3xl font-bold mb-6">Made for You</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Add more cards or playlist sections here */}
-          <div className="bg-[#1f1f1f] rounded-xl p-6 shadow-lg hover:bg-[#292929] transition">
-            <h4 className="text-xl font-semibold mb-2">Chill Vibes</h4>
-            <p className="mb-4 text-sm text-gray-300">Relaxing tunes for you</p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-              Listen Now
-            </button>
-          </div>
-          {/* You can duplicate or map more items here */}
         </div>
       </section>
     </div>
