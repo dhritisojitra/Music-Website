@@ -1,9 +1,10 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ok from '../assets/Bruno Mars.jpg'
 
 const ArtistList = () => {
   const artists = [
-    { name: "Harry Styles", image: "https://via.placeholder.com/150" },
+    { name: "Harry Styles", image: ok },
     { name: "The Weeknd", image: "https://via.placeholder.com/150" },
     { name: "Bruno Mars", image: "https://via.placeholder.com/150" },
     { name: "Shawn Mendes", image: "https://via.placeholder.com/150" },
