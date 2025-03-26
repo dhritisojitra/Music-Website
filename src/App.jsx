@@ -1,15 +1,10 @@
-import MainNavbar from './components/Navbar.jsx';
-import ArtistList from './pages/Artist.jsx';
-import CardGrid from './pages/Home';
-import Card from './components/Card.jsx';
-import MelodifyApp from './Mainpage.jsx';
+import Ok from "./ok";
+
 function App() {
   return (
     <>
-     
-      <MelodifyApp/>
-      
-    </>
+    <Ok/>
+      </>
   );
 }
 
