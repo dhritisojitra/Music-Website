@@ -1,12 +1,11 @@
-import Ok from "./ok";
+import Ok from "./Ok";
+import Home from "./pages/Home"
 import ArtistCard from "./components/ArtistCard.jsx";
 
 function App() {
   return (
     <>
-    <Ok/>
-    <ArtistCard/>
-    <Settings/>
+      <Home/>
       </>
   );
 }

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
+import {Link} from "react-router-dom";
 import ProfileDropdown from "./components/ProfileDropDown";
 import ArtistCard from "./components/ArtistCard";
-import Settings from "./components/Settings";
 
 const Ok = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,10 +26,17 @@ const Ok = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-9 font-bold text-lg mt-3">
-          <li className="hover:text-gray-400 cursor-pointer">Home</li>
-          <li className="hover:text-gray-400 cursor-pointer">My Playlists</li>
-          <li className="hover:text-gray-400 cursor-pointer">Library</li>
-          <li><ProfileDropdown/></li>
+        <li className="hover:text-gray-400 cursor-pointer">
+        <Link to="/home" style={{ textDecoration: "none", color: "inherit" }}>Home</Link>
+        </li>
+
+        <li className="hover:text-gray-400 cursor-pointer">
+        <Link to="/my_playlists" style={{ textDecoration: "none", color: "inherit" }}>My Playlist</Link>
+        </li>          
+        <li className="hover:text-gray-400 cursor-pointer">
+        <Link to="/Library" style={{ textDecoration: "none", color: "inherit"}}>Library</Link>
+        </li>
+        <li><ProfileDropdown/></li>
         </ul>
 
 

@@ -13,7 +13,7 @@ export default function ArtistCard() {
             className="w-52 h-52 mx-auto rounded-full object-cover border-2 border-purple-500"
           />
           <h2 className="text-xl font-semibold text-center mt-4">Artist Name</h2>
-          <p className="text-  center text-sm text-gray-300">Music Genre</p>
+          <p className="text-center text-sm text-gray-300">Music Genre</p>
 
           {/* Social Icons */}
           <div className="flex justify-center gap-4 mt-4">

@@ -1,39 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { User, ChevronDown, LogOut, Settings, Clock } from "lucide-react";
 
 export default function ProfileDropdown() {
   const [open, setOpen] = useState(false);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".profile-dropdown")) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
-    <div className="relative">
+    <div className="relative profile-dropdown">
       {/* Profile Button */}
       <div
-        className="flex items-center gap-2  cursor-pointer rounded-md hover:text-gray-400"
+        className="flex items-center gap-2 cursor-pointer rounded-md hover:text-gray-400"
         onClick={() => setOpen(!open)}
       >
-        <User className="w-6 h-6 text-white-500" />
-        <span className="text-white-700">Profile</span>
-        <ChevronDown className="w-4 h-4 text-white-500" />
+        <User className="w-6 h-6 text-white" />
+        <span className="text-gray-200">Profile</span>
+        <ChevronDown className="w-4 h-4 text-white" />
       </div>
 
       {/* Dropdown Menu */}
       {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+        <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
           <ul className="text-sm text-gray-700">
             <li className="flex items-center gap-2 pr-2 py-2 hover:bg-gray-100 cursor-pointer">
               <User className="w-4 h-4 text-gray-500" />
               Add Account
             </li>
-            <li className="flex items-center gap-2 pr-3 py-2 hover:bg-gray-100 cursor-pointer">
+            <li className="flex items-center gap-2 pr-2 py-2 hover:bg-gray-100 cursor-pointer">
               <Settings className="w-4 h-4 text-gray-500" />
-              Settings & Privacy
+              <Link to="/Settings" style={{textDecoration: "none", color: "inherit"}}>
+                Settings and Privacy
+              </Link>
             </li>
-            <li className="flex items-center gap-2 pr-3 py-2 hover:bg-gray-100 cursor-pointer">
+            <li className="flex items-center gap-2 pr-2 py-2 hover:bg-gray-100 cursor-pointer">
               <Clock className="w-4 h-4 text-gray-500" />
               Recents
             </li>
-            <li className="flex items-center gap-2 pr-3 py-2 hover:bg-gray-100 cursor-pointer  ">
-              <LogOut className="w-4 h-4 text-red-500" />
+            <li className="flex items-center gap-2 pr-2 py-2 hover:bg-gray-100 cursor-pointer text-red-500">
+              <LogOut className="w-4 h-4" />
               Log Out
             </li>
           </ul>
