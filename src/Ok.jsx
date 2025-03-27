@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
+import ProfileDropdown from "./components/ProfileDropDown";
+import ArtistCard from "./components/ArtistCard";
+import Settings from "./components/Settings";
 
 const Ok = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +12,7 @@ const Ok = () => {
       <div className="container mx-auto flex justify-between items-center">
         
         {/* Logo */}
-        <h1 className="text-2xl font-bold">MyBrand</h1>
+        <h1 className="text-2xl font-bold">Vibe</h1>
 
         {/* Search Bar */}
         <div className="hidden md:flex items-center bg-white p-2 rounded-full w-150">
@@ -22,11 +25,11 @@ const Ok = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6 font-bold text-lg mt-3">
+        <ul className="hidden md:flex space-x-9 font-bold text-lg mt-3">
           <li className="hover:text-gray-400 cursor-pointer">Home</li>
           <li className="hover:text-gray-400 cursor-pointer">My Playlists</li>
           <li className="hover:text-gray-400 cursor-pointer">Library</li>
-
+          <li><ProfileDropdown/></li>
         </ul>
 
 
