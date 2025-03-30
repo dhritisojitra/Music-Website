@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import Ok from '../Ok'
 export const UseEffect = () => {
     const [count1,setcount1] = useState(0)
     const [count2,setcount2] = useState(0)
@@ -31,7 +32,7 @@ export const UseEffect = () => {
   return (
     
     <>
-    <Ok></Ok>
+    <Ok/>
     <div className='bg-blue-100 min-h-screen p-10 flex flex-col items-center '>
         <h1>useEffect cases</h1>
         <div className='w-full max-w-3xl bg-white p-6 rounded-lg shadow-md m-2'>
