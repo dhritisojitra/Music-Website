@@ -8,6 +8,8 @@ import Settings from './components/Settings'
 import Library from './components/Library'
 import Playlist from './components/Playlist'
 import Home from './pages/Home'
+import { ReactHooks } from './ReactHooks/ReactHooks.jsx';
+import { UseEffect } from './ReactHooks/UseEffect.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +20,8 @@ createRoot(document.getElementById('root')).render(
       <Route path='/settings' element={<Settings/>} />
       <Route path='/library' element={<Library/>} />
       <Route path='/my_playlists' element={<Playlist/>} />
+      <Route path ='/usestate' element={<ReactHooks/>}/>
+      <Route path ='/useeffect' element={<UseEffect/>}/>
     </Routes>
     </BrowserRouter>
   </StrictMode>,

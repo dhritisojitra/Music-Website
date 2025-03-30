@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Ok from '../Ok'
 export const ReactHooks = () => {
 
   const [text, setText] = useState([])
@@ -39,6 +40,7 @@ export const ReactHooks = () => {
 
   return (
     <>
+    <Ok/>
       <div className='bg-blue-100 min-h-screen p-10 flex flex-col items-center'>
         <h1>useState different cases</h1>
         {/* Case 1 Section */}
