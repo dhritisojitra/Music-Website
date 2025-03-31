@@ -34,7 +34,7 @@ export default function HooksDropdown() {
           <ul className="text-sm text-gray-700">
             <li className="flex items-center gap-2 pr-2 py-2 hover:bg-gray-100 cursor-pointer">
               <User className="w-4 h-4 text-gray-500" />
-              <Link to='/usestate'>
+              <Link to='/usestate' style={{textDecoration: "none", color: "inherit"}}>
               useState
               </Link>
             </li>
@@ -46,7 +46,7 @@ export default function HooksDropdown() {
             </li>
             <li className="flex items-center gap-2 pr-2 py-2 hover:bg-gray-100 cursor-pointer">
               <Clock className="w-4 h-4 text-gray-500" />
-              Recents
+              <Link to='/useref' style={{textDecoration: "none", color: "inherit"}}>useRef</Link>
             </li>
             <li className="flex items-center gap-2 pr-2 py-2 hover:bg-gray-100 cursor-pointer text-red-500">
               <LogOut className="w-4 h-4" />
