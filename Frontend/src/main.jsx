@@ -10,6 +10,7 @@ import Playlist from './components/Playlist'
 import Home from './pages/Home'
 import { ReactHooks } from './ReactHooks/ReactHooks.jsx';
 import { UseEffect } from './ReactHooks/UseEffect.jsx';
+import { Useref } from './ReactHooks/Useref.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='/my_playlists' element={<Playlist/>} />
       <Route path ='/usestate' element={<ReactHooks/>}/>
       <Route path ='/useeffect' element={<UseEffect/>}/>
+      <Route path ='/useref' element={<Useref/>}/>
     </Routes>
     </BrowserRouter>
   </StrictMode>,

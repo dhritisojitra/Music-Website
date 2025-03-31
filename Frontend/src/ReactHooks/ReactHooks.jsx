@@ -21,9 +21,9 @@ export const ReactHooks = () => {
       return { ...prev, color: "Blue" }         //...prev keeps the other states as unchanged
     })
   }
-  const changeYear = ()=> {
-    setCar((prev)=>{
-      return {...prev, year: "2025"}
+  const changeYear = () => {
+    setCar((prev) => {
+      return { ...prev, year: "2025" }
     })
   }
 
@@ -40,7 +40,7 @@ export const ReactHooks = () => {
 
   return (
     <>
-    <Ok/>
+      <Ok />
       <div className='bg-blue-100 min-h-screen p-10 flex flex-col items-center'>
         <h1>useState different cases</h1>
         {/* Case 1 Section */}
@@ -65,7 +65,11 @@ export const ReactHooks = () => {
         </div>
 
         {/* Car Info Box */}
-        <div className='flex flex-col items-center bg-blue-300 w-full  p-4 mt-6 rounded-lg shadow-md'>
+        <div className={`flex flex-col items-center w-full p-4 mt-6 rounded-lg shadow-md 
+    ${Car.color === 'Red' ? 'bg-red-500' : ''} 
+    ${Car.color === 'Blue' ? 'bg-blue-500' : ''} 
+    ${Car.color === 'Green' ? 'bg-green-500' : ''} 
+  `} >
           <h2>Case 2: The data is in form of object</h2>
           <h3 className='text-lg font-semibold'>The car is {Car.name}</h3>
           <h4>The year is {Car.year} and the color is {Car.color}</h4>
@@ -77,7 +81,7 @@ export const ReactHooks = () => {
         >
           Change Color
         </button>
-        
+
         <button
           className="bg-blue-500 text-white font-semibold py-2 px-4 mt-4 rounded-lg hover:bg-blue-700 transition duration-300"
           onClick={changeYear}
