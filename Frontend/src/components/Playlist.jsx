@@ -5,7 +5,7 @@ function Playlist() {
   return (
     <>
       <Ok />
-      <div className="bg-gradient-to-b from-[#1a5dc9] to-black p-3 min-h-screen ">
+      <div className="bg-gradient-to-b from-purple-950 to-black p-3 min-h-screen ">
         <div className="  sm:flex flex flex-row text-white text-lg font-semibold bg-violet-900 h-20  rounded-lg p-4  mx-10 sm:mx-10">
           <div className='flex-1'>Title</div>
           <div className='flex-1'>Date Added</div>
