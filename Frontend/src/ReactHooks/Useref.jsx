@@ -25,7 +25,7 @@ export const Useref = () => {
 
     /* useEffect(()=>{
          setCount(prev=>prev+1)   //here since setCount itself is a state and it is changing, useeffect will go under infinite loop and keep re-rendering
-      });*/
+      }); */
     return (
         <>
             <Ok />

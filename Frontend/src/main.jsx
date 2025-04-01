@@ -11,6 +11,7 @@ import Home from './pages/Home'
 import { ReactHooks } from './ReactHooks/ReactHooks.jsx';
 import { UseEffect } from './ReactHooks/UseEffect.jsx';
 import { Useref } from './ReactHooks/Useref.jsx';
+import { UseMemo } from './ReactHooks/UseMemo.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')).render(
       <Route path ='/usestate' element={<ReactHooks/>}/>
       <Route path ='/useeffect' element={<UseEffect/>}/>
       <Route path ='/useref' element={<Useref/>}/>
+      <Route path ='/useMemo' element={<UseMemo/>}/>
     </Routes>
     </BrowserRouter>
   </StrictMode>,

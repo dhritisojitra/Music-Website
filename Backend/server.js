@@ -32,6 +32,18 @@ app.get("/manan", (req,res)=>{
     res.json("manan is here")
 })
 
+
+app.post("/search", (req,res)=>{
+    const {song}= req.body
+
+    const q = "Select * from NewSong WHERE songName = ?"
+    db.query(q,[song],(err,data)=>{
+        if(err) return res.json(err)
+
+        res.json(data)
+    })
+})
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
