@@ -12,13 +12,14 @@ function Home() {
 
 
   const search = async()=>{
+    console.log(val)
     try{
-      const response =await API.post("/search", val)
+      const response =await API.post("/search", {song:val})
       console.log(response.data);
       
     }
     catch(err){
-      console.err(err)
+      console.log(err)
     }
   }
   return (
@@ -33,7 +34,7 @@ function Home() {
               type="text"
               placeholder="Search..."
               className="text-black flex-1 bg-purple-300 p-2 rounded-md"
-              value={text}
+              
               onChange={(e) => setVal(e.target.value)}
             />
             <button
