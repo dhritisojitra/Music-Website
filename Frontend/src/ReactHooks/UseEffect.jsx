@@ -12,17 +12,11 @@ export const UseEffect = () => {
     const limit =5
 
     useEffect(()=>{
-      const timer = setTimeout(()=>{
-            setcount1(count=>count+1)
-        },1500)
-        return () => clearTimeout(timer)
+      setcount1(count=>count+1)
     })
 
     useEffect(()=>{
-        const timer = setTimeout(()=>{
-            setcount2(count=>count+1)
-        },1500)
-        return () => clearTimeout(timer)
+     setcount2(count=>count+1)
     },[])
 
     useEffect(()=>{

@@ -13,12 +13,12 @@ export const ReactHooks = () => {
   const [Car, setCar] = useState({
     name: "Ferrari",
     year: "2020",
-    color: "Red"
+    color: "Green"
   })
 
   const changeColor = () => {
     setCar((prev) => {
-      return { ...prev, color: "Blue" }         //...prev keeps the other states as unchanged
+      return { ...prev, color: "Red" }         //...prev keeps the other states as unchanged
     })
   }
   const changeYear = () => {
@@ -52,7 +52,9 @@ export const ReactHooks = () => {
               placeholder="Search..."
               className="text-black flex-1 bg-purple-300 p-2 rounded-md"
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={(e) => {setText(e.target.value)
+                 console.log(text)}}
+              
             />
             <button
               className='bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300'
