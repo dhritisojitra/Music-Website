@@ -1,12 +1,29 @@
 const express = require("express")
 const cors = require("cors")
-const db = require("./db")
+const db = require("./config/db")
+const cookieParser = require("cookie-parser")
+
+const {register,login} = require("./controllers/authcontroller")
 
 //connecting with express and cors
 const app = express();
-app.use(cors());
-app.use(express.json());
 
+
+app.use(express.json());
+app.use(cors({credentials: true}))
+app.use(cookieParser())
+
+const port = process.env.PORT || 4000
+
+
+
+
+app.post("/register", register)
+
+app.post("/login",login)
+
+
+/* 
 app.post("/message", (req,res)=>{
     console.log(req.body.message)
     res.json({reply: "got the message"})
@@ -77,8 +94,9 @@ app.post("/searchByArtist", (req, res) => {
 });
 
 
+*/
 
-const PORT = process.env.PORT || 5000;
+const PORT = port;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
