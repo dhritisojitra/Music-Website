@@ -1,26 +1,78 @@
-const express = require("express")
-const cors = require("cors")
-const db = require("./config/db")
-const cookieParser = require("cookie-parser")
+import express from "express";
+import cors from "cors";
+import db from "./config/db.js"; // include .js extension
+import cookieParser from "cookie-parser";
+import authRouter from "./routes/authRoutes.js"
+import userRouter from "./routes/userRoutes.js";
 
-const {register,login} = require("./controllers/authcontroller")
 
-//connecting with express and cors
+
+// Setup express app
 const app = express();
 
-
+const allowedOrigins = ['http://localhost:5173']
+app.use(cors({origin: allowedOrigins, credentials: true }));
+app.options('*', cors());
 app.use(express.json());
-app.use(cors({credentials: true}))
-app.use(cookieParser())
 
-const port = process.env.PORT || 4000
+app.use(cookieParser());
+
+const port = process.env.PORT || 4000;
+
+//API endpoints
+
+app.use('/api/auth', authRouter)
+app.use('/api/user', userRouter)
 
 
 
 
-app.post("/register", register)
 
-app.post("/login",login)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Controller for searching songs by artist
+const searchSongsByArtist = async (req, res) => {
+    const { artistName } = req.body;
+
+    if (!artistName) {
+        return res.json({ success: false, message: "Artist name is required" });
+    }
+
+    try {
+        const [rows] = await db.query(
+            `SELECT songID, songName, ArtistName
+             FROM newsong
+             JOIN artists ON newsong.ArtistID = artists.ArtistID
+             WHERE ArtistName = ?`,
+            [artistName]
+        );
+
+        if (rows.length === 0) {
+            return res.json({ success: false, message: "No songs found for this artist" });
+        }
+
+        return res.json({ success: true, songs: rows });
+    } catch (error) {
+        return res.json({ success: false, message: error.message });
+    }
+};
+
+
+
+
 
 
 /* 
