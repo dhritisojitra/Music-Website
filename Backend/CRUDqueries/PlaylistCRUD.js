@@ -1,10 +1,8 @@
 
 import db from "../config/db.js"
 
-
-
 //Creating a Playlist
-const createPlaylist = async (req, res) => {
+export const createPlaylist = async (req, res) => {
     const { playlistName, userId } = req.body;
 
     //Validate input
@@ -44,7 +42,8 @@ const createPlaylist = async (req, res) => {
         return res.json({
             success: true,
             message: "Playlist created successfully",
-            playlistId: newPlaylistId
+            playlistId: newPlaylistId,
+            name : playlistName
         });
 
     } catch (error) {
@@ -57,7 +56,7 @@ const createPlaylist = async (req, res) => {
 
 
 //deleting playlist 
-const deletePlaylist = async (req, res) => {
+export const deletePlaylist = async (req, res) => {
     const { playlistName, userId } = req.body;
 
     // Validate input
@@ -91,6 +90,36 @@ const deletePlaylist = async (req, res) => {
         );
 
         return res.json({ success: true, message: "Playlist deleted successfully" });
+
+    } catch (error) {
+        return res.json({ success: false, message: error.message });
+    }
+};
+
+//fetching playlists of a user
+export const getPlaylists = async (req, res) => {
+    const { userId } = req.params;
+
+    if (!userId) {
+        return res.json({ success: false, message: "Missing userId" });
+    }
+
+    try {
+        const [userRows] = await db.query("SELECT * FROM User WHERE User_ID = ?", [userId]);
+        if (userRows.length === 0) {
+            return res.json({ success: false, message: "User does not exist" });
+        }
+
+        const [playlistRows] = await db.query(
+            "SELECT * FROM Playlist WHERE User_ID = ?",
+            [userId]
+        );
+
+        if (playlistRows.length === 0) {
+            return res.json({ success: true, playlist: [] }); // It's okay to return an empty list
+        }
+
+        return res.json({ success: true, playlist: playlistRows });
 
     } catch (error) {
         return res.json({ success: false, message: error.message });

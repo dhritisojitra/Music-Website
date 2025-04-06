@@ -4,6 +4,7 @@ import db from "./config/db.js"; // include .js extension
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/authRoutes.js"
 import userRouter from "./routes/userRoutes.js";
+import userPlaylistRouter from "./routes/userPlaylistRoutes.js";
 
 
 
@@ -23,6 +24,7 @@ const port = process.env.PORT || 4000;
 
 app.use('/api/auth', authRouter)
 app.use('/api/user', userRouter)
+app.use('/api/user-playlist', userPlaylistRouter)
 
 
 

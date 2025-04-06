@@ -8,19 +8,25 @@ import axios from "axios";
 
 const Ok = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { backendURL } = useContext(AppContent);
+  const { backendURL, setUserData, setIsLoggedIn } = useContext(AppContent); // 🆕
   const navigate = useNavigate();
-
+  
   const handleLogout = async () => {
     try {
       await axios.post(`${backendURL}/api/auth/logout`, {}, { withCredentials: true });
-      navigate('/');
+  
+      // 🧼 Clear frontend context state
+      setUserData(null); // or false if you prefer that
+      setIsLoggedIn(false); // if you're using it to manage auth guards
+  
+      // 🔁 Navigate to login
+      navigate('/aut');
     } catch (err) {
       console.error(err.message);
       alert("Logout failed. Try again.");
     }
   };
-
+  
   return (
     <nav className="bg-gradient-to-r from-purple-950 to-purple-700 text-white p-4 shadow-md">
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between mt-2">
@@ -29,7 +35,7 @@ const Ok = () => {
         <div className="flex-shrink-0">
           <h1 className="text-2xl font-bold whitespace-nowrap">Vibe</h1>
         </div>
-
+        
         {/* Search + Links */}
         <div className="flex-1 mx-4 flex justify-center items-center space-x-10">
           {/* Search */}
