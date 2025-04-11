@@ -66,7 +66,7 @@ const AddPlaylistSection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <div className="min-h-screen bg-gradient-to-br from-black to-purple-950 text-white">
       {/* Sidebar-like header */}
       <div className="flex">
         {/* Main content */}

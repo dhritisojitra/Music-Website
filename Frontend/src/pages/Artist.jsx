@@ -1,38 +1,22 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import ok from '../assets/Bruno Mars.jpg'
+import ok from "../assets/Bruno Mars.jpg";
 
 const ArtistList = () => {
-  const artists = [
-    { name: "Harry Styles", image: ok },
-    { name: "The Weeknd", image: "https://via.placeholder.com/150" },
-    { name: "Bruno Mars", image: "https://via.placeholder.com/150" },
-    { name: "Shawn Mendes", image: "https://via.placeholder.com/150" },
-    { name: "Lana Del Ray", image: "https://via.placeholder.com/150" },
-    { name: "Arctic Monkeys", image: "https://via.placeholder.com/150" },
-    { name: "Post Malone", image: "https://via.placeholder.com/150" },
-  ];
 
   return (
-    <div
-      className="container-fluid min-vh-100 d-flex flex-column"
-      style={{ backgroundColor: "#1e0a3c", padding: "2rem" }}
-    >
-      <h2 className="text-white text-center mb-4">Top Artists</h2>
-      
-      <div className="row row-cols-1 row-cols-md-3 g-4">
+    <div className="min-h-screen w-full bg-gradient-to-br from-purple-600 via-pink-500 to-purple-700 p-8">
+      <h2 className="text-white text-3xl font-bold text-center mb-8">Top Artists</h2>
+
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {artists.map((artist, index) => (
-          <div key={index} className="col">
-            <div className="card text-white bg-dark shadow-lg h-100">
-              <img
-                src={artist.image}
-                className="card-img-top"
-                alt={artist.name}
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-              <div className="card-body text-center">
-                <h5 className="card-title">{artist.name}</h5>
-              </div>
+          <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all">
+            <img
+              src={artist.image}
+              alt={artist.name}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4 text-center">
+              <h5 className="text-lg font-semibold text-gray-800">{artist.name}</h5>
             </div>
           </div>
         ))}

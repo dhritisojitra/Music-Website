@@ -3,7 +3,7 @@ import React from 'react';
 export default function DailyMixes() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-950 to-black p-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-32">
         {/* Daily Mix 1 */}
         <div className="h-[22em] w-[22em] border border-purple-500/30 rounded-2xl bg-white/5 text-white font-nunito p-6 flex flex-col justify-between backdrop-blur-xl shadow-[0_0_30px_rgba(168,85,247,0.3)]">
           <div>

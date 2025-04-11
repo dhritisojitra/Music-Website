@@ -21,7 +21,7 @@ const Ok = () => {
       setIsLoggedIn(false); // if you're using it to manage auth guards
   
       // 🔁 Navigate to login
-      navigate('/aut');
+      navigate('/auth');
     } catch (err) {
       console.error(err.message);
       alert("Logout failed. Try again.");
@@ -52,7 +52,7 @@ const Ok = () => {
           </div>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-6 font-semibold text-lg items-center">
+          <ul className="hidden md:flex space-x-12 font-semibold text-lg items-center">
           <li><Link to="/home" className="text-white no-underline text-decoration-none hover:text-gray-300">Home</Link></li>
           <li><Link to="/my_playlists" className="text-white no-underline text-decoration-none hover:text-gray-300">My Playlist</Link></li>
           <li><Link to="/library" className="text-white no-underline text-decoration-none hover:text-gray-300">Library</Link></li>
