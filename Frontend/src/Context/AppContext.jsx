@@ -8,7 +8,8 @@ export const AppContextProvider = (props)=>{
     const backendURL = import.meta.env.VITE_BACKEND_URL
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userData, setUserData] = useState(false)
-
+    
+    
     const getUserData = async () => {
         try {
             const { data } = await axios.get(backendURL + '/api/user/data');

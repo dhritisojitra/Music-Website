@@ -5,7 +5,7 @@ import ProfileDropdown from "./components/ProfileDropDown";
 import HooksDropdown from "./components/HooksDropdown";
 import { AppContent } from "./Context/AppContext";
 import axios from "axios";
-import SearchBar from "../SearchBar/Input.jsx";
+import Input from "./components/SearchBar";
 
 const Ok = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,14 +42,7 @@ const Ok = () => {
         {/* Search + Links */}
         <div className="flex-1 mx-4 flex justify-center items-center space-x-10">
           {/* Search */}
-          <div className="hidden md:flex items-center bg-white p-2 rounded-full w-64 md:w-96">
-            <Search className="text-gray-400 mx-2" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="bg-transparent focus:outline-none text-black w-full"
-            />
-          </div>
+         <Input/>
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-12 font-semibold text-lg items-center">

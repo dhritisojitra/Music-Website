@@ -1,10 +1,16 @@
+import { useContext } from 'react';
 import Ok from '../Ok'
 import { Play } from "lucide-react";
+import { AppContent } from '../Context/AppContext';
 
 function Playlist() {
+
+  const {userData} = useContext(AppContent)
+
   return (
     <>
       <Ok />
+      <div>Hi {userData.userId}</div>
       <div className="bg-gradient-to-b from-purple-950 to-black p-3 min-h-screen ">
         <div className="  sm:flex flex flex-row text-white text-lg font-semibold bg-violet-900 h-20  rounded-lg p-4  mx-10 sm:mx-10">
           <div className='flex-1'>Title</div>
