@@ -42,7 +42,7 @@ const Input = () => {
       <input
         type="text"
         className="w-full pl-10 pr-12 py-3 text-sm sm:text-base text-gray-700 bg-transparent rounded-lg focus:outline-none"
-        placeholder="Search for components, styles, creators..."
+        placeholder="Search for songs, artists..."
         value={input}
         onChange={(e)=>{setInput(e.target.value)}}
       />

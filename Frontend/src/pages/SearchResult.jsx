@@ -31,54 +31,59 @@ const ResultsPage = () => {
   }, [searchQuery]);
 
   return (
-   <>
-    <Ok/>
-    <div className="p-6 max-w-5xl mx-auto">
-      <h2 className="text-2xl font-bold text-center mb-6">
-        Search Results for <span className="text-[#5044e4]">"{searchQuery}"</span>
-      </h2>
+    <>
+      <Ok />
+      <div className="min-h-screen bg-gradient-to-b from-purple-950 to-black text-white">
+  <div className="p-6 max-w-6xl mx-auto">
+    <h2 className="text-2xl font-bold text-center mb-8">
+      Search Results for <span className="text-[#5044e4]">"{searchQuery}"</span>
+    </h2>
 
-      {results.length === 0 ? (
-        <p className="text-center text-gray-500">No songs found.</p>
-      ) : (
-        <div className="w-full">
-          <div className="grid grid-cols-12 font-semibold text-gray-600 text-sm border-b pb-2 mb-2">
-            <div className="col-span-5">Song</div>
-            <div className="col-span-3">Artist</div>
-            <div className="col-span-2">Album</div>
-            <div className="col-span-1 text-right">Duration</div>
-            <div className="col-span-1 text-center">Link</div>
-          </div>
+    {results.length === 0 ? (
+      <p className="text-center text-gray-300">No songs found.</p>
+    ) : (
+      <div className="w-full space-y-2">
+        <div className="border-t border-gray-600 mb-4"></div> {/* extended divider line */}
 
-          {results.map((song) => (
-            <div
-              key={song.songID}
-              className="grid grid-cols-12 items-center text-sm py-3 px-2 rounded-md hover:bg-gray-100 transition"
-            >
-              <div className="col-span-5 font-medium text-gray-800 truncate">{song.songName}</div>
-              <div className="col-span-3 text-gray-600 truncate">{song.ArtistName}</div>
-              <div className="col-span-2 text-gray-600 truncate">{song.albumName}</div>
-              <div className="col-span-1 text-right text-gray-600">
-                {(song.DurationMS / 60000).toFixed(0)}:
-                {((song.DurationMS % 60000) / 1000).toFixed(0).padStart(2, '0')}
-              </div>
-              <div className="col-span-1 text-center">
-                <a
-                  href={song.SpotifyURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#5044e4] hover:underline"
-                >
-                  ▶
-                </a>
-              </div>
-            </div>
-          ))}
+        <div className="grid grid-cols-12 gap-x-6 font-semibold text-gray-300 text-sm pb-2 border-b border-gray-600">
+          <div className="col-span-4 px-2">Song</div>
+          <div className="col-span-3 px-2">Artist</div>
+          <div className="col-span-3 px-2">Album</div>
+          <div className="col-span-1 px-2 text-right">Duration</div>
+          <div className="col-span-1 px-2 text-center">Link</div>
         </div>
-      )}
-    </div>
+
+        {results.map((song) => (
+          <div
+            key={song.songID}
+            className="grid grid-cols-12 gap-x-6 items-center text-sm py-3 px-2 rounded-md hover:bg-white/10 transition"
+          >
+            <div className="col-span-4 px-2 font-medium truncate">{song.songName}</div>
+            <div className="col-span-3 px-2 truncate text-gray-300">{song.ArtistName}</div>
+            <div className="col-span-3 px-2 truncate text-gray-300">{song.albumName}</div>
+            <div className="col-span-1 px-2 text-right text-gray-300">
+              {(song.DurationMS / 60000).toFixed(0)}:
+              {((song.DurationMS % 60000) / 1000).toFixed(0).padStart(2, '0')}
+            </div>
+            <div className="col-span-1 px-2 text-center">
+              <a
+                href={song.SpotifyURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#5044e4] hover:underline"
+              >
+                ▶
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
     </>
   );
+  
 };
 
 export default ResultsPage;

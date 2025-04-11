@@ -54,7 +54,7 @@ export default function DailyMixes() {
               />
               <div>
                 <p className="text-base font-medium">Indie Chill</p>
-                <p className="text-xs text-gray-400">Cigarettes After Sex, Phoebe Bridgers</p>
+                <p className="text-xs text-gray-400">One Direction, Prettymuch</p>
               </div>
             </div>
             <button
