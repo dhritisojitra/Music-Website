@@ -14,7 +14,7 @@ export default function AuthPage() {
         setIsLogin(!isLogin);
         setFormData({ name: '', password: '' });
     };
-
+    
     const handleChange = (e) => {
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
