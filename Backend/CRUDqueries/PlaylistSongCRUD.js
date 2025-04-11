@@ -90,7 +90,7 @@ export const removeSongFromPlaylist = async (req, res) => {
 //fetching the playlist song along with its song details
 
 export const getPlaylistSongs = async (req, res) => {
-    const { userId, playlist_ID } = req.body;
+    const { userId, playlist_ID } = req.params;
 
     if (!userId || !playlist_ID) {
         return res.json({ success: false, message: "Missing userId or playlist_ID" });

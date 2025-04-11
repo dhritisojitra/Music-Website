@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { PlusCircle, X, Music, Headphones } from "lucide-react";
 import { AppContent } from "../Context/AppContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddPlaylistSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playlist, setPlaylist] = useState("");
   const [fetchedPlaylists, setFetchedPlaylists] = useState([]);
   const { backendURL, userData } = useContext(AppContent);
+  const navigate = useNavigate()
 
   // Fetch playlists of the user
   const fetchPlaylists = async () => {
@@ -50,6 +52,16 @@ const AddPlaylistSection = () => {
       console.error("Failed to create playlist:", err);
     }
   };
+
+  const handlePlaylistClick = async(e)=>{
+    try{
+      navigate(`/playlistSong?query=${encodeURIComponent(e)}`)
+    }catch(err){
+      console.error(err);
+      
+    }
+    
+  }
 
   // Generate random gradient backgrounds for playlists
   const getRandomGradient = () => {
@@ -114,7 +126,7 @@ const AddPlaylistSection = () => {
                     <div className={`bg-gradient-to-br ${gradient} w-full h-40 flex items-center justify-center relative`}>
                       <Music size={40} className="text-white/70" />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 flex items-center justify-center transition-all">
-                        <button className="bg-green-500 rounded-full p-3 shadow-lg">
+                        <button onClick={handlePlaylistClick(playlist.Playlist_ID)} className="bg-green-500 rounded-full p-3 shadow-lg">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                           </svg>

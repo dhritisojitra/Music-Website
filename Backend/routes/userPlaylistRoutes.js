@@ -10,7 +10,7 @@ userPlaylistRouter.get("/get/:userId", getPlaylists)
 
 userPlaylistRouter.post("/addSong", addSongToPlaylist)
 userPlaylistRouter.put("/deleteSong/:playlistId",removeSongFromPlaylist)
-userPlaylistRouter.get("/getPlaylist/:userId/:playlistId",getPlaylistSongs)
+userPlaylistRouter.get("/getPlaylist/:userId/:playlist_ID",getPlaylistSongs)
 
 
 export default userPlaylistRouter
