@@ -5,6 +5,7 @@ import ProfileDropdown from "./components/ProfileDropDown";
 import HooksDropdown from "./components/HooksDropdown";
 import { AppContent } from "./Context/AppContext";
 import axios from "axios";
+import SearchBar from "../SearchBar/Input.jsx";
 
 const Ok = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,9 @@ const Ok = () => {
         {/* Logo */}
         <div className="flex-shrink-0">
           <h1 className="text-2xl font-bold whitespace-nowrap">Vibe</h1>
+        </div>
+        <div>
+          <Input/>
         </div>
         
         {/* Search + Links */}
