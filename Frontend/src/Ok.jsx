@@ -37,7 +37,6 @@ const Ok = () => {
           <h1 className="text-2xl font-bold whitespace-nowrap">Vibe</h1>
         </div>
         <div>
-          <Input/>
         </div>
         
         {/* Search + Links */}
@@ -54,18 +53,18 @@ const Ok = () => {
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-6 font-semibold text-lg items-center">
-            <li><Link to="/home" className="hover:text-gray-300">Home</Link></li>
-            <li><Link to="/my_playlists" className="hover:text-gray-300">My Playlist</Link></li>
-            <li><Link to="/library" className="hover:text-gray-300">Library</Link></li>
-            <li><ProfileDropdown /></li>
+          <li><Link to="/home" className="text-white no-underline text-decoration-none hover:text-gray-300">Home</Link></li>
+          <li><Link to="/my_playlists" className="text-white no-underline text-decoration-none hover:text-gray-300">My Playlist</Link></li>
+          <li><Link to="/library" className="text-white no-underline text-decoration-none hover:text-gray-300">Library</Link></li>
+          <li><ProfileDropdown /></li>
           </ul>
         </div>
 
         {/* Logout Button */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 -mt-4">
           <button
             onClick={handleLogout}
-            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200"
+            className="px-2 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200"
           >
             Logout
           </button>

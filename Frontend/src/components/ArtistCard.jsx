@@ -1,53 +1,102 @@
 import React from 'react';
-import { Globe, Music } from "lucide-react";
 
-export default function ArtistCard() {
+export default function DailyMixes() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-950 to-black p-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-36">
-        {/* Artist Card */}
-        <div className="bg-black backdrop-blur-md p-6 rounded-2xl shadow-lg text-white border border-white/20">
-          <img 
-            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.reddit.com%2Fr%2FBrunoMars%2Fcomments%2F1el6bdq%2Fwhat_is_your_favorite_bruno_mars_pic_this_is_my%2F&psig=AOvVaw1XFno8qazsPRRzJhNnFVio&ust=1743142930929000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKC39c3PqYwDFQAAAAAdAAAAABAE"
-            alt="Artist" 
-            className="w-52 h-52 mx-auto rounded-full object-cover border-2 border-purple-500"
-          />
-          <h2 className="text-xl font-semibold text-center mt-4">Artist Name</h2>
-          <p className="text-center text-sm text-gray-300">Music Genre</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20">
+        {/* Daily Mix 1 */}
+        <div className="h-[22em] w-[22em] border border-purple-500/30 rounded-2xl bg-white/5 text-white font-nunito p-6 flex flex-col justify-between backdrop-blur-xl shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+          <div>
+            <h1 className="text-xl font-bold mb-2">🎧 Daily Mix 1</h1>
+            <p className="text-sm text-gray-300">
+              A fresh blend of your all-time favorites and trending hits. Perfect for your everyday mood.
+            </p>
+          </div>
 
-          {/* Social Icons */}
-          <div className="flex justify-center gap-4 mt-4">
-            <a href="#" className="hover:text-purple-400"><Globe className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-purple-400"><Music className="w-5 h-5" /></a>
+          <div className="flex items-center justify-between mt-6">
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://static.vecteezy.com/system/resources/previews/014/524/358/non_2x/dj-mix-vector.jpg" 
+                alt="Mix Cover" 
+                className="w-12 h-12 rounded-full object-cover border-2 border-purple-600"
+              />
+              <div>
+                <p className="text-base font-medium">Pop & Soul</p>
+                <p className="text-xs text-gray-400">Bruno Mars, Dua Lipa & more</p>
+              </div>
+            </div>
+            <button
+              className="px-4 py-1 border border-purple-600 rounded-full flex items-center gap-2 hover:bg-purple-800/40 transition duration-300"
+            >
+              <span className="text-sm">Play</span>
+              <svg className="w-5 h-5" fill="white" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
         </div>
 
-        {/* Duplicate Cards (Just for layout) */}
-        <div className="bg-black backdrop-blur-md p-6 rounded-2xl shadow-lg text-white border border-white/20">
-          <img 
-            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fopen.spotify.com%2Fartist%2F00FQb4jTyendYWaN8pK0wa&psig=AOvVaw25QGU3xIhSpaGrqhd_eGR-&ust=1743143101944000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMj5593QqYwDFQAAAAAdAAAAABAE"
-            alt="Artist" 
-            className="w-52 h-52 mx-auto rounded-full object-cover border-2 border-purple-500"
-          />
-          <h2 className="text-xl font-semibold text-center mt-4">Artist Name</h2>
-          <p className="text-center text-sm text-gray-300">Music Genre</p>
-          <div className="flex justify-center gap-4 mt-4">
-            <a href="#" className="hover:text-purple-400"><Globe className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-purple-400"><Music className="w-5 h-5" /></a>
+        {/* Daily Mix 2 */}
+        <div className="h-[22em] w-[22em] border border-purple-500/30 rounded-2xl bg-white/5 text-white font-nunito p-6 flex flex-col justify-between backdrop-blur-xl shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+          <div>
+            <h1 className="text-xl font-bold mb-2">🎶 Daily Mix 2</h1>
+            <p className="text-sm text-gray-300">
+              Discover your chill zone. A curated mix of indie, mellow beats, and acoustic gems.
+            </p>
+          </div>
+
+          <div className="flex items-center justify-between mt-6">
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://static.vecteezy.com/system/resources/previews/014/524/358/non_2x/dj-mix-vector.jpg" 
+                alt="Mix Cover" 
+                className="w-12 h-12 rounded-full object-cover border-2 border-purple-600"
+              />
+              <div>
+                <p className="text-base font-medium">Indie Chill</p>
+                <p className="text-xs text-gray-400">Cigarettes After Sex, Phoebe Bridgers</p>
+              </div>
+            </div>
+            <button
+              className="px-4 py-1 border border-purple-600 rounded-full flex items-center gap-2 hover:bg-purple-800/40 transition duration-300"
+            >
+              <span className="text-sm">Play</span>
+              <svg className="w-5 h-5" fill="white" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
         </div>
 
-        <div className="bg-black backdrop-blur-md p-6 rounded-2xl shadow-lg text-white border border-white/20">
-          <img 
-            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.imdb.com%2Fname%2Fnm4089170%2F&psig=AOvVaw2z6Po79HCL5EjZXFCkRC_M&ust=1743143031494000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJCTy4DQqYwDFQAAAAAdAAAAABAE"
-            alt="Artist" 
-            className="w-52 h-52 mx-auto rounded-full object-cover border-2 border-purple-500"
-          />
-          <h2 className="text-xl font-semibold text-center mt-4">Artist Name</h2>
-          <p className="text-center text-sm text-gray-300">Music Genre</p>
-          <div className="flex justify-center gap-4 mt-4">
-            <a href="#" className="hover:text-purple-400"><Globe className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-purple-400"><Music className="w-5 h-5" /></a>
+        {/* Daily Mix 3 */}
+        <div className="h-[22em] w-[22em] border border-purple-500/30 rounded-2xl bg-white/5 text-white font-nunito p-6 flex flex-col justify-between backdrop-blur-xl shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+          <div>
+            <h1 className="text-xl font-bold mb-2">🎵 Daily Mix 3</h1>
+            <p className="text-sm text-gray-300">
+              A Bollywood fusion of golden hits and latest chartbusters. Nostalgia and freshness all in one.
+            </p>
+          </div>
+
+          <div className="flex items-center justify-between mt-6">
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://static.vecteezy.com/system/resources/previews/014/524/358/non_2x/dj-mix-vector.jpg" 
+                alt="Mix Cover" 
+                className="w-12 h-12 rounded-full object-cover border-2 border-purple-600"
+              />
+              <div>
+                <p className="text-base font-medium">Bollywood Blend</p>
+                <p className="text-xs text-gray-400">Arijit Singh, Shreya Ghoshal</p>
+              </div>
+            </div>
+            <button
+              className="px-4 py-1 border border-purple-600 rounded-full flex items-center gap-2 hover:bg-purple-800/40 transition duration-300"
+            >
+              <span className="text-sm">Play</span>
+              <svg className="w-5 h-5" fill="white" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

@@ -45,3 +45,5 @@ const Input = () => {
     </StyledWrapper>
   );
 }
+
+export default Input;
