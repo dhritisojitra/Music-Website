@@ -11,6 +11,7 @@ import { UseEffect } from "./ReactHooks/UseEffect.jsx";
 import { Useref } from "./ReactHooks/Useref.jsx";
 import { UseMemo } from "./ReactHooks/UseMemo.jsx";
 import { UseCallbackfn } from "./ReactHooks/UseCallbackfn.jsx";
+import Songs from "./pages/Songs.jsx";
 
 export default function App() {
   return (
@@ -27,7 +28,7 @@ export default function App() {
         <Route path="/library" element={<Library />} />
         <Route path="/my_playlists" element={<Playlist />} />
         <Route path="/artist" element={<ArtistCard />} />
-
+        <Route path='/songs' element ={<Songs/>}/>
         {/* React Hooks playground */}
         <Route path="/usestate" element={<ReactHooks />} />
         <Route path="/useeffect" element={<UseEffect />} />

@@ -54,11 +54,6 @@ const addSongToPlaylist = async (req, res) => {
     }
 };
 
-
-
-
-
-
 //deleting song from the playlist
 const removeSongFromPlaylist = async (req, res) => {
     const { playlistName, userId, songId } = req.body;
@@ -103,10 +98,6 @@ const removeSongFromPlaylist = async (req, res) => {
         return res.json({ success: false, message: error.message });
     }
 };
-
-
-
-
 
 //fetching the playlist song along with its song details
 

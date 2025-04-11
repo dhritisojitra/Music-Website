@@ -32,11 +32,31 @@ app.use('/api/user-playlist', userPlaylistRouter)
 
 
 
+const searchAllSongs = async(req, res) =>{
+    const { songName } = req.query;
+    if(!songName){
+        return res.json({message: "Song not found"});
+    }
+
+    try{
+        const [rows] = await db.query(
+            'SELECT songID FROM newsong WHERE songName = ?',
+            [songName]
+        );
+
+        if(rows.length == 0){
+            return res.json({message: "No songs found"});
+        }
+        return res.json({songs: rows});
+
+    }catch(error){
+        return res.json({message: error.message});
+    }
+};
 
 
 
-
-
+app.get('/searchForNow', searchAllSongs)
 
 
 
