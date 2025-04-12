@@ -9,7 +9,7 @@ userPlaylistRouter.post("/create", createPlaylist);
 userPlaylistRouter.get("/get/:userId", getPlaylists)
 
 userPlaylistRouter.post("/addSong", addSongToPlaylist)
-userPlaylistRouter.put("/deleteSong/:playlistId",removeSongFromPlaylist)
+userPlaylistRouter.delete("/deleteSong/:playlistId",removeSongFromPlaylist)
 userPlaylistRouter.get("/getPlaylist/:userId/:playlist_ID",getPlaylistSongs)
 
 

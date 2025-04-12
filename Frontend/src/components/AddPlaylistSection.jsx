@@ -53,15 +53,22 @@ const AddPlaylistSection = () => {
     }
   };
 
-  const handlePlaylistClick = async(e)=>{
-    try{
-      navigate(`/playlistSong?query=${encodeURIComponent(e)}`)
-    }catch(err){
-      console.error(err);
+  const handlePlaylistClick = (playlistName, playlistID) => {
+    try {
+      // Concatenate playlist name and ID with a delimiter
+      console.log(playlistID);
+      console.log(playlistName);
       
+      
+      const playlistData = `${encodeURIComponent(playlistName)}:${playlistID}`;
+      
+      // Navigate to the PlaylistSongs page with the encoded playlist data
+      navigate(`/playlistSong?query=${playlistData}`);
+    } catch (err) {
+      console.error(err);
     }
-    
-  }
+  };
+  
 
   // Generate random gradient backgrounds for playlists
   const getRandomGradient = () => {
@@ -121,12 +128,13 @@ const AddPlaylistSection = () => {
                 return (
                   <div
                     key={playlist.Playlist_ID}
+                    onClick={() => handlePlaylistClick(playlist.Playlist_Name, playlist.Playlist_ID)}
                     className="bg-black/40 backdrop-blur-sm hover:bg-black/60 border border-gray-800 rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-500/10 hover:scale-105 cursor-pointer group"
                   >
                     <div className={`bg-gradient-to-br ${gradient} w-full h-40 flex items-center justify-center relative`}>
                       <Music size={40} className="text-white/70" />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 flex items-center justify-center transition-all">
-                        <button onClick={handlePlaylistClick(playlist.Playlist_ID)} className="bg-green-500 rounded-full p-3 shadow-lg">
+                        <button   className="bg-green-500 rounded-full p-3 shadow-lg">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                           </svg>

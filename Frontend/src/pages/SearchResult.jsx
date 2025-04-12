@@ -26,7 +26,6 @@ const ResultsPage = () => {
         setResults([]); // fallback
       }
     };
-
     if (searchQuery) fetchResults();
   }, [searchQuery]);
 
@@ -34,7 +33,7 @@ const ResultsPage = () => {
     <>
       <Ok />
       <div className="min-h-screen bg-gradient-to-b from-purple-950 to-black text-white">
-  <div className="p-6 max-w-6xl mx-auto">
+  <div className="p-6 max-w-8xl mx-auto">
     <h2 className="text-2xl font-bold text-center mb-8">
       Search Results for <span className="text-[#5044e4]">"{searchQuery}"</span>
     </h2>
@@ -46,8 +45,10 @@ const ResultsPage = () => {
         <div className="border-t border-gray-600 mb-4"></div> {/* extended divider line */}
 
         <div className="grid grid-cols-12 gap-x-6 font-semibold text-gray-300 text-sm pb-2 border-b border-gray-600">
-          <div className="col-span-4 px-2">Song</div>
-          <div className="col-span-3 px-2">Artist</div>
+          <div className="col-span-3 px-2">Song</div>
+          <div className="col-span-2 px-2">Genre</div>
+          
+          <div className="col-span-2 px-2">Artist</div>
           <div className="col-span-3 px-2">Album</div>
           <div className="col-span-1 px-2 text-right">Duration</div>
           <div className="col-span-1 px-2 text-center">Link</div>
@@ -58,8 +59,9 @@ const ResultsPage = () => {
             key={song.songID}
             className="grid grid-cols-12 gap-x-6 items-center text-sm py-3 px-2 rounded-md hover:bg-white/10 transition"
           >
-            <div className="col-span-4 px-2 font-medium truncate">{song.songName}</div>
-            <div className="col-span-3 px-2 truncate text-gray-300">{song.ArtistName}</div>
+            <div className="col-span-3 px-2 font-medium truncate">{song.songName}</div>
+            <div className="col-span-2 px-2 font-medium truncate">{song.genreName}</div>
+            <div className="col-span-2 px-2 truncate text-gray-300">{song.ArtistName}</div>
             <div className="col-span-3 px-2 truncate text-gray-300">{song.albumName}</div>
             <div className="col-span-1 px-2 text-right text-gray-300">
               {(song.DurationMS / 60000).toFixed(0)}:

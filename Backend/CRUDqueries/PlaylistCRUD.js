@@ -51,10 +51,6 @@ export const createPlaylist = async (req, res) => {
     }
 };
 
-
-
-
-
 //deleting playlist 
 export const deletePlaylist = async (req, res) => {
     const { playlistName, userId } = req.body;

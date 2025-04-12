@@ -8,7 +8,7 @@ export const addSongToPlaylist = async (req, res) => {
     //Validate input
     if (!playlist_ID || !userId || !songId) {
         return res.json({ success: false, message: "Missing playlist name, user ID, or song ID" });
-    }
+    } 
 
     try {
         //Check if song exists
@@ -44,10 +44,10 @@ export const addSongToPlaylist = async (req, res) => {
 
 //deleting song from the playlist
 export const removeSongFromPlaylist = async (req, res) => {
-    const { playlist_ID, userId, songId } = req.body;
+    const { playlist_Name, userId, songId } = req.body;
 
     //Validate input
-    if (!playlist_ID || !userId || !songId) {
+    if (!playlist_Name || !userId || !songId) {
         return res.json({ success: false, message: "Missing playlist name, user ID, or song ID" });
     }
 
@@ -55,7 +55,7 @@ export const removeSongFromPlaylist = async (req, res) => {
         //Get Playlist_ID
         const [playlistRows] = await db.query(
             "SELECT Playlist_ID FROM playlist WHERE Playlist_Name = ? AND User_ID = ?",
-            [playlist_ID, userId]
+            [playlist_Name, userId]
         );
 
         if (playlistRows.length === 0) {
@@ -120,6 +120,7 @@ export const getPlaylistSongs = async (req, res) => {
         //Fetch songs in the playlist
         const [songs] = await db.query(
             `SELECT 
+                newsong.songID,
                 newsong.songName,
                 newsong.SpotifyURL,
                 album.albumName,

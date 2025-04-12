@@ -14,6 +14,7 @@ import { UseCallbackfn } from "./ReactHooks/UseCallbackfn.jsx";
 import Songs from "./pages/Songs.jsx";
 import Input from "./components/SearchBar.jsx";
 import ResultsPage from "./pages/SearchResult.jsx";
+import PlaylistSongs from "./pages/PlaylistSongs.jsx";
 
 export default function App() {
   return (
@@ -36,7 +37,7 @@ export default function App() {
 
       {/*Search Bar route*/ }
       <Route path="/results" element={<ResultsPage />} />
-
+      <Route path = '/playlistSong' element={<PlaylistSongs/>}/>
         {/* React Hooks playground */}
         <Route path="/usestate" element={<ReactHooks />} />
         <Route path="/useeffect" element={<UseEffect />} />
