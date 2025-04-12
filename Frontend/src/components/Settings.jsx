@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContent } from "../Context/AppContext";
+
 import {
   User,
   PlayCircle,
@@ -10,6 +11,7 @@ import {
   ChevronUp,
   Paintbrush,
 } from "lucide-react";
+
 
 export default function Settings() {
   const { userData } = useContext(AppContent);
@@ -111,7 +113,7 @@ export default function Settings() {
           onToggle={() => setShowTheme(!showTheme)}
         >
           <div className="mt-4 space-y-2 pl-2">
-            {["System", "Light", "Dark"].map((theme) => (
+            {["Light", "Dark"].map((theme) => (
               <div
                 key={theme}
                 onClick={() => handleThemeChange(theme)}
