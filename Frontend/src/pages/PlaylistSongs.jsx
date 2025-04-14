@@ -8,18 +8,17 @@ import Ok from "../Ok";
 const PlaylistSongs = () => {
   const { backendURL, userData } = useContext(AppContent);
   const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get("query") || ""; // This has both playlist name and ID
-
-  const [playlistName, playlistID] = searchQuery.split(":"); // Split to get both playlist name and ID
+  const searchQuery = searchParams.get("query") || "";
+  const [playlistName, playlistID] = searchQuery.split(":");
 
   const [songs, setSongs] = useState([]);
+  const [recommendedSongs, setRecommendedSongs] = useState([]);
 
   const fetchResults = async () => {
     try {
       const res = await axios.get(
         `${backendURL}/api/user-playlist/getPlaylist/${userData.userId}/${playlistName}`
       );
-      console.log("response:", res.data);
       setSongs(res?.data?.songs || []);
     } catch (err) {
       console.error("Error fetching song results:", err);
@@ -27,20 +26,33 @@ const PlaylistSongs = () => {
     }
   };
 
+  const fetchRecommendedSongs = async () => {
+    try {
+      const res = await axios.get(`${backendURL}/api/user-playlist/getRecommended/${userData.userId}`)
+
+      if (res.data.success) {
+        setRecommendedSongs(res.data.recommendations || []);
+      }
+    } catch (err) {
+      console.error("Error fetching recommended songs:", err);
+    }
+  };
+
   useEffect(() => {
-    if (userData?.userId) fetchResults();
+    if (userData?.userId) {
+      fetchResults();
+      fetchRecommendedSongs();
+    }
   }, [userData, playlistID]);
 
-  // Adding playlist song logic
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  // First, we search the song
   const handleSearch = async () => {
     try {
       const res = await axios.get(`${backendURL}/api/search/searchSong`, {
-        params: { songName: searchText }
+        params: { songName: searchText },
       });
       setSearchResults(res?.data?.songs || []);
     } catch (err) {
@@ -48,48 +60,38 @@ const PlaylistSongs = () => {
     }
   };
 
-  // When the user clicks a song from the search results, we add it to the playlist
   const handleAddSong = async (songID) => {
     try {
-      console.log(playlistID, userData.userId, songID);
-
       await axios.post(`${backendURL}/api/user-playlist/addSong`, {
         playlist_ID: playlistID,
         userId: userData.userId,
-        songId: songID
+        songId: songID,
       });
 
-      // After adding the song, refresh the playlist
       fetchResults();
-      setShowSearchBar(false);  // Hide the search bar after adding song
-      setSearchText(""); // Clear search text
+      fetchRecommendedSongs();
+      setShowSearchBar(false);
+      setSearchText("");
     } catch (err) {
       console.error(err);
     }
   };
 
-
-  //deleting from playlist
-
-  const handleDelete = async (e) => {
-    try{
+  const handleDelete = async (songID) => {
+    try {
       await axios.delete(`${backendURL}/api/user-playlist/deleteSong/${playlistID}`, {
         data: {
           playlist_Name: playlistName,
           userId: userData.userId,
-          songId: e
-        }
+          songId: songID,
+        },
       });
+
       fetchResults();
-      setShowSearchBar(false);  // Hide the search bar after adding song
-      setSearchText(""); // Clear search text
-      
-    }catch(err){
+    } catch (err) {
       console.error(err);
     }
-
-  }
-
+  };
 
   return (
     <>
@@ -120,7 +122,7 @@ const PlaylistSongs = () => {
               />
               <button
                 onClick={handleSearch}
-                className="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-5 py-2 rounded-full shadow-md transition duration-300 ease-in-out"
+                className="ml-2 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-5 py-2 rounded-full shadow-md transition"
               >
                 Search
               </button>
@@ -146,7 +148,6 @@ const PlaylistSongs = () => {
           <div className="text-center text-gray-400">No songs in this playlist yet.</div>
         ) : (
           <div className="w-full">
-            {/* Header Row */}
             <div className="grid grid-cols-6 text-gray-400 border-b border-gray-700 pb-4 mb-4 mt-5 text-sm font-semibold uppercase tracking-wider">
               <div>#</div>
               <div>Title</div>
@@ -156,7 +157,6 @@ const PlaylistSongs = () => {
               <div>Link</div>
             </div>
 
-            {/* Song Rows */}
             {songs.map((song, index) => (
               <div
                 key={index}
@@ -172,7 +172,7 @@ const PlaylistSongs = () => {
                     .toString()
                     .padStart(2, "0")}
                 </div>
-                <div className="flex items-center gap-20">
+                <div className="flex items-center gap-4">
                   <a
                     href={song.SpotifyURL}
                     target="_blank"
@@ -182,14 +182,43 @@ const PlaylistSongs = () => {
                     <ExternalLink size={20} />
                   </a>
                   <button
-                  onClick={() => handleDelete(song.songID)}
-                  className="text-red-500 hover:text-red-700 transition-colors"
+                    onClick={() => handleDelete(song.songID)}
+                    className="text-red-500 hover:text-red-700 transition-colors"
                   >
-                  <Trash2 size={20} />
+                    <Trash2 size={20} />
                   </button>
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Recommended Songs Section */}
+        {recommendedSongs.length > 0 && (
+          <div className="mt-10">
+            <h3 className="text-2xl font-bold mb-4 text-pink-400">✨ Recommended Songs</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {recommendedSongs.map((song, idx) => (
+                <div
+                  key={song.songID}
+                  className="flex justify-between items-center p-4 bg-black/30 rounded-lg hover:bg-purple-900/30 transition-all"
+                >
+                  <div>
+                    <div className="text-lg font-semibold text-white">{song.songName}</div>
+                    <div className="text-sm text-gray-400">{song.ArtistName}</div>
+                    <div className="text-sm text-gray-500">
+                      Released: {new Date(song.AlbumReleaseDate).toDateString()}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleAddSong(song.songID)}
+                    className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-full text-sm transition"
+                  >
+                    + Add
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

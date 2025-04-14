@@ -8,7 +8,7 @@ export const addSongToPlaylist = async (req, res) => {
     //Validate input
     if (!playlist_ID || !userId || !songId) {
         return res.json({ success: false, message: "Missing playlist name, user ID, or song ID" });
-    } 
+    }
 
     try {
         //Check if song exists
@@ -145,3 +145,45 @@ export const getPlaylistSongs = async (req, res) => {
         return res.json({ success: false, message: error.message });
     }
 };
+
+//get recommended songs for a particular playlist
+
+export const getRecommendedSongs = async (req, res) => {
+    const { userId } = req.params;
+
+    if (!userId) {
+        return res.json({ success: false, message: "Missing user ID" });
+    }
+
+    try {
+        const [recommendedSongs] = await db.query(
+            `
+            SELECT newsong.songID, newsong.songName, artists.ArtistName, newsong.AlbumReleaseDate
+FROM newsong 
+JOIN artists ON newsong.artistID = artists.ArtistID
+WHERE newsong.artistID IN (
+    SELECT DISTINCT newsong.artistID
+    FROM playlist 
+    JOIN playlist_songs ON playlist.Playlist_ID = playlist_songs.Playlist_ID
+    JOIN newsong  ON playlist_songs.Song_ID = newsong.songID
+    WHERE playlist.User_ID = ?
+)
+AND newsong.songID NOT IN (
+    SELECT playlist_songs.Song_ID
+    FROM playlist 
+    JOIN playlist_songs  ON playlist.Playlist_ID = playlist_songs.Playlist_ID
+    WHERE playlist.User_ID = ?
+)
+ORDER BY newsong.AlbumReleaseDate DESC
+LIMIT 10;
+            `,
+            [userId, userId]
+        );
+
+        return res.json({ success: true, recommendations: recommendedSongs });
+    } catch (error) {
+        return res.json({ success: false, message: error.message });
+    }
+};
+
+//daily mix 

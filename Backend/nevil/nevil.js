@@ -77,6 +77,8 @@ const createPlaylist = async (req, res) => {
 
 
 //get recommended songs based on the artists in their playlists 
+
+
 const getRecommendedSongs = async (req, res) => {
     const { userId } = req.body;
 
@@ -104,7 +106,7 @@ AND newsong.songID NOT IN (
     WHERE playlist.User_ID = ?
 )
 ORDER BY newsong.AlbumReleaseDate DESC
-LIMIT 10;
+LIMIT 5;
             `,
             [userId, userId]
         );

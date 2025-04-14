@@ -121,3 +121,61 @@ export const getPlaylists = async (req, res) => {
         return res.json({ success: false, message: error.message });
     }
 };
+
+//daily mix playlist
+
+export const getDailyMix = async (req, res) => {
+    const { userId } = req.params;
+
+    if (!userId) {
+        return res.json({ success: false, message: "Username is required" });
+    }
+
+    try {
+        
+
+        // Query for daily mix
+        const [dailyMix] = await db.query(`
+            (
+                SELECT DISTINCT s.songID, s.songName, a.ArtistName, s.AlbumReleaseDate
+                FROM playlist p
+                JOIN playlist_songs ps ON p.Playlist_ID = ps.Playlist_ID
+                JOIN newsong s ON ps.Song_ID = s.songID
+                JOIN artists a ON s.artistID = a.ArtistID
+                WHERE p.User_ID = ?
+                ORDER BY RAND()
+                LIMIT 5
+            )
+            UNION
+            (
+                SELECT DISTINCT s.songID, s.songName, a.ArtistName, s.AlbumReleaseDate
+                FROM newsong s
+                JOIN artists a ON s.artistID = a.ArtistID
+                WHERE s.genreID IN (
+                    SELECT DISTINCT n.genreID
+                    FROM playlist p
+                    JOIN playlist_songs ps ON p.Playlist_ID = ps.Playlist_ID
+                    JOIN newsong n ON ps.Song_ID = n.songID
+                    WHERE p.User_ID = ?
+                )
+                AND s.songID NOT IN (
+                    SELECT ps.Song_ID
+                    FROM playlist p
+                    JOIN playlist_songs ps ON p.Playlist_ID = ps.Playlist_ID
+                    WHERE p.User_ID = ?
+                )
+                ORDER BY RAND()
+                LIMIT 5
+            )
+        `, [userId, userId, userId]);
+
+        res.json({
+            success: true,
+            message: "Daily Mix generated",
+            mix: dailyMix
+        });
+
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
