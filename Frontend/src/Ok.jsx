@@ -64,7 +64,6 @@ const Ok = () => {
           {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-12 font-semibold text-lg items-center">
             <li><Link to="/home" className="text-white no-underline text-decoration-none hover:text-gray-300">Home</Link></li>
-            <li><Link to="/my_playlists" className="text-white no-underline text-decoration-none hover:text-gray-300">My Playlist</Link></li>
             <li><Link to="/library" className="text-white no-underline text-decoration-none hover:text-gray-300">Library</Link></li>
             <li><ProfileDropdown /></li>
           </ul>
@@ -101,7 +100,6 @@ const Ok = () => {
         </div>
         <ul className="mt-4 space-y-2 text-center">
           <li><Link to="/home" className="block py-2 hover:text-gray-400">Home</Link></li>
-          <li><Link to="/my_playlists" className="block py-2 hover:text-gray-400">My Playlist</Link></li>
           <li><Link to="/library" className="block py-2 hover:text-gray-400">Library</Link></li>
         </ul>
       </div>

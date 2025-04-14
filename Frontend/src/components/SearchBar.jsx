@@ -20,7 +20,7 @@ const Input = () => {
         }
       };
   return (
-    <div className="relative w-full max-w-[480px] mx-auto bg-gray-100 rounded-2xl shadow-md p-1.5 transition-all duration-150 ease-in-out hover:scale-[1.02] hover:shadow-lg">
+    <div className="relative w-full max-w-[640px] mx-auto bg-gray-100 rounded-2xl shadow-md p-1.5 transition-all duration-150 ease-in-out hover:scale-[1.02] hover:shadow-lg">
       
       {/* Search icon on the left */}
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
