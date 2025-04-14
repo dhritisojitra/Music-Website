@@ -13,6 +13,7 @@ const PlaylistSongs = () => {
 
   const [songs, setSongs] = useState([]);
   const [recommendedSongs, setRecommendedSongs] = useState([]);
+  const [sortBy, setSortBy] = useState(""); // Sorting state
 
   const fetchResults = async () => {
     try {
@@ -28,8 +29,7 @@ const PlaylistSongs = () => {
 
   const fetchRecommendedSongs = async () => {
     try {
-      const res = await axios.get(`${backendURL}/api/user-playlist/getRecommended/${userData.userId}`)
-
+      const res = await axios.get(`${backendURL}/api/user-playlist/getRecommended/${userData.userId}`);
       if (res.data.success) {
         setRecommendedSongs(res.data.recommendations || []);
       }
@@ -67,7 +67,6 @@ const PlaylistSongs = () => {
         userId: userData.userId,
         songId: songID,
       });
-
       fetchResults();
       fetchRecommendedSongs();
       setShowSearchBar(false);
@@ -86,12 +85,27 @@ const PlaylistSongs = () => {
           songId: songID,
         },
       });
-
       fetchResults();
     } catch (err) {
       console.error(err);
     }
   };
+
+  // Sorting logic
+  const sortedSongs = [...songs].sort((a, b) => {
+    switch (sortBy) {
+      case "name-asc":
+        return a.songName.localeCompare(b.songName);
+      case "name-desc":
+        return b.songName.localeCompare(a.songName);
+      case "duration-asc":
+        return a.DurationMS - b.DurationMS;
+      case "duration-desc":
+        return b.DurationMS - a.DurationMS;
+      default:
+        return 0;
+    }
+  });
 
   return (
     <>
@@ -102,7 +116,6 @@ const PlaylistSongs = () => {
             <h2 className="text-4xl font-extrabold bg-gradient-to-r from-fuchsia-500 to-pink-500 bg-clip-text text-transparent drop-shadow-lg">
               🎵 Playlist: {decodeURIComponent(playlistName)}
             </h2>
-
             <button
               className="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-5 py-2 rounded-full shadow-md transition duration-300 ease-in-out"
               onClick={() => setShowSearchBar(!showSearchBar)}
@@ -144,6 +157,23 @@ const PlaylistSongs = () => {
           )}
         </div>
 
+        {/* Sort options */}
+        <div className="mb-4 flex gap-4 items-center justify-end">
+          <label className="text-sm font-medium text-gray-400">Sort by:</label>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="bg-black border border-gray-600 text-white px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+          >
+            <option value="">-- None --</option>
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="duration-asc">Duration (Shortest First)</option>
+            <option value="duration-desc">Duration (Longest First)</option>
+          </select>
+        </div>
+
+        {/* Playlist Table */}
         {songs.length === 0 ? (
           <div className="text-center text-gray-400">No songs in this playlist yet.</div>
         ) : (
@@ -157,7 +187,7 @@ const PlaylistSongs = () => {
               <div>Link</div>
             </div>
 
-            {songs.map((song, index) => (
+            {sortedSongs.map((song, index) => (
               <div
                 key={index}
                 className="grid grid-cols-6 items-center py-4 px-4 rounded-xl bg-black/20 hover:bg-purple-900/40 hover:shadow-md transition-all duration-300 ease-in-out"
@@ -168,9 +198,7 @@ const PlaylistSongs = () => {
                 <div className="text-gray-300 text-lg">{song.ArtistName}</div>
                 <div className="text-gray-400 text-lg">
                   {Math.floor(song.DurationMS / 60000)}:
-                  {(Math.floor((song.DurationMS % 60000) / 1000))
-                    .toString()
-                    .padStart(2, "0")}
+                  {(Math.floor((song.DurationMS % 60000) / 1000)).toString().padStart(2, "0")}
                 </div>
                 <div className="flex items-center gap-4">
                   <a
@@ -198,7 +226,7 @@ const PlaylistSongs = () => {
           <div className="mt-10">
             <h3 className="text-2xl font-bold mb-4 text-pink-400">✨ Recommended Songs</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {recommendedSongs.map((song, idx) => (
+              {recommendedSongs.map((song) => (
                 <div
                   key={song.songID}
                   className="flex justify-between items-center p-4 bg-black/30 rounded-lg hover:bg-purple-900/30 transition-all"

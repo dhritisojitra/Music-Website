@@ -27,6 +27,8 @@ const AddPlaylistSection = () => {
   };
 
   useEffect(() => {
+    console.log("hey");
+    
     fetchPlaylists();
   }, [userData, backendURL]);
 
