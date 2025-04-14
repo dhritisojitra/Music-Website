@@ -6,7 +6,7 @@ import HooksDropdown from "./components/HooksDropdown";
 import { AppContent } from "./Context/AppContext";
 import axios from "axios";
 import Input from "./components/SearchBar";
-import echoLogo from "./assets/echo.png";
+import music from "./assets/music.png";
 
 const Ok = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,10 +51,10 @@ const Ok = () => {
 
   return (
     <nav className="bg-gradient-to-r from-purple-950 to-purple-700 text-white p-4 shadow-md">
-      <div className="w-full max-w-7xl mx-auto flex items-center justify-between mt-2">
+      <div className="w-full max-w-9xl mx-auto flex items-center justify-between mt-2">
       {/* Logo */}
-      <div className="flex-shrink-0">
-      <img src={echoLogo} alt="echo logo" className="h-30" />
+      <div className="flex-shrink-0 h-16 flex items-center justify-center">
+      <img src={music} alt="echo logo" className="h-full scale-300 mx-20" />
       </div>
 
         {/* Search + Links */}
