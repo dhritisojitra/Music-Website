@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { PlusCircle, X, Music, Headphones } from "lucide-react";
+import { PlusCircle, X, Music, Headphones, Trash2 } from "lucide-react";
 import { AppContent } from "../Context/AppContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,15 +9,15 @@ const AddPlaylistSection = () => {
   const [playlist, setPlaylist] = useState("");
   const [fetchedPlaylists, setFetchedPlaylists] = useState([]);
   const { backendURL, userData } = useContext(AppContent);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Fetch playlists of the user
   const fetchPlaylists = async () => {
     if (!userData?.userId) {
-      setFetchedPlaylists([]); 
+      setFetchedPlaylists([]);
       return;
     }
-     
+
     try {
       const response = await axios.get(`${backendURL}/api/user-playlist/get/${userData.userId}`);
       setFetchedPlaylists(response.data.playlist || []);
@@ -46,7 +46,6 @@ const AddPlaylistSection = () => {
         userId,
       });
 
-      // Refresh the playlist list after creation
       fetchPlaylists();
     } catch (err) {
       console.error("Failed to create playlist:", err);
@@ -55,22 +54,24 @@ const AddPlaylistSection = () => {
 
   const handlePlaylistClick = (playlistName, playlistID) => {
     try {
-      // Concatenate playlist name and ID with a delimiter
-      console.log(playlistID);
-      console.log(playlistName);
-      
-      
       const playlistData = `${encodeURIComponent(playlistName)}:${playlistID}`;
-      
-      // Navigate to the PlaylistSongs page with the encoded playlist data
       navigate(`/playlistSong?query=${playlistData}`);
     } catch (err) {
       console.error(err);
     }
   };
-  
 
-  // Generate random gradient backgrounds for playlists
+  // Delete a playlist
+  const handleDeletePlaylist = async (playlist_ID) => {
+    try {
+      await axios.delete(`${backendURL}/api/user-playlist/delete/${playlist_ID}`);
+      fetchPlaylists(); // Refresh list after deletion
+    } catch (err) {
+      console.error("Failed to delete playlist:", err);
+    }
+  };
+
+  // Random gradient for each playlist card
   const getRandomGradient = () => {
     const gradients = [
       "from-pink-500 to-purple-700",
@@ -86,11 +87,8 @@ const AddPlaylistSection = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-purple-950 text-white">
-      {/* Sidebar-like header */}
       <div className="flex">
-        {/* Main content */}
         <div className="flex-1 p-8">
-          {/* Header with glass effect */}
           <div className="mb-8 backdrop-blur-md bg-black/30 rounded-xl p-6 shadow-lg">
             <div className="flex justify-between items-center">
               <div>
@@ -107,7 +105,6 @@ const AddPlaylistSection = () => {
             </div>
           </div>
 
-          {/* Playlist Display */}
           {fetchedPlaylists.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-96 backdrop-blur-md bg-black/20 rounded-xl p-8">
               <Headphones size={64} className="text-purple-400 mb-4" />
@@ -128,19 +125,33 @@ const AddPlaylistSection = () => {
                 return (
                   <div
                     key={playlist.Playlist_ID}
-                    onClick={() => handlePlaylistClick(playlist.Playlist_Name, playlist.Playlist_ID)}
-                    className="bg-black/40 backdrop-blur-sm hover:bg-black/60 border border-gray-800 rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-500/10 hover:scale-105 cursor-pointer group"
+                    className="relative bg-black/40 backdrop-blur-sm hover:bg-black/60 border border-gray-800 rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-500/10 hover:scale-105 group"
                   >
-                    <div className={`bg-gradient-to-br ${gradient} w-full h-40 flex items-center justify-center relative`}>
+                    {/* Delete button */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeletePlaylist(playlist.Playlist_ID);
+                      }}
+                      className="absolute top-2 right-2 bg-black/50 hover:bg-red-600 text-white p-1 rounded-full z-10 transition"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+
+                    <div
+                      onClick={() => handlePlaylistClick(playlist.Playlist_Name, playlist.Playlist_ID)}
+                      className={`bg-gradient-to-br ${gradient} w-full h-40 flex items-center justify-center relative cursor-pointer`}
+                    >
                       <Music size={40} className="text-white/70" />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 flex items-center justify-center transition-all">
-                        <button   className="bg-green-500 rounded-full p-3 shadow-lg">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
+                        <button className="bg-green-500 rounded-full p-3 shadow-lg">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                           </svg>
                         </button>
                       </div>
                     </div>
+
                     <div className="p-4">
                       <h4 className="text-lg font-bold truncate">{playlist.Playlist_Name}</h4>
                       <p className="text-sm text-gray-400 mt-1">
@@ -150,6 +161,7 @@ const AddPlaylistSection = () => {
                   </div>
                 );
               })}
+
               {/* Add playlist card */}
               <div
                 onClick={() => setIsModalOpen(true)}
@@ -163,7 +175,7 @@ const AddPlaylistSection = () => {
         </div>
       </div>
 
-      {/* Modal for creating playlist - with improved styling */}
+      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadeIn">
           <div 
@@ -179,7 +191,7 @@ const AddPlaylistSection = () => {
                 <X size={20} />
               </button>
             </div>
-            
+
             <div className="mb-6">
               <label className="block text-gray-400 text-sm font-medium mb-2">Playlist Name</label>
               <input
@@ -191,7 +203,7 @@ const AddPlaylistSection = () => {
                 autoFocus
               />
             </div>
-            
+
             <div className="flex space-x-3">
               <button
                 onClick={() => setIsModalOpen(false)}

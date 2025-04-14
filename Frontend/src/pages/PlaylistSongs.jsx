@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { AppContent } from "../Context/AppContext";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Trash2 } from "lucide-react";
 import Ok from "../Ok";
 
 const PlaylistSongs = () => {
@@ -172,7 +172,7 @@ const PlaylistSongs = () => {
                     .toString()
                     .padStart(2, "0")}
                 </div>
-                <div>
+                <div className="flex items-center gap-20">
                   <a
                     href={song.SpotifyURL}
                     target="_blank"
@@ -181,7 +181,12 @@ const PlaylistSongs = () => {
                   >
                     <ExternalLink size={20} />
                   </a>
-                  <button onClick={()=>{handleDelete(song.songID)}} className="bg-red-500 hover:bg-red-600 text-white text-sm font-semibold px-5 py-2 rounded-full shadow-md transition duration-300 ease-in-out">Delete</button>
+                  <button
+                  onClick={() => handleDelete(song.songID)}
+                  className="text-red-500 hover:text-red-700 transition-colors"
+                  >
+                  <Trash2 size={20} />
+                  </button>
                 </div>
               </div>
             ))}
