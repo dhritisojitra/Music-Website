@@ -65,20 +65,8 @@ This structured design improves query performance, makes the schema scalable, an
 ![Screenshot 1](./Frontend/public/Screenshots/S5.png)
 
 ## 📁 Project Structure
+![Screenshot 1](./Frontend/public/Screenshots/S7.png)
 
-echo/
-├── client/ # React frontend
-│ └── src/
-│ ├── components/
-│ ├── pages/
-│ └── ...
-├── server/ # Node.js backend
-│ ├── controllers/
-│ ├── routes/
-│ ├── middleware/
-│ └── ...
-├── database/ # SQL setup & schema
-└── README.md
 
 ---
 
