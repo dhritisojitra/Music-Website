@@ -2,6 +2,7 @@
 
 **Echo** is a full-stack music playlist web application that lets users create, manage, and enjoy custom music playlists. Built with modern technologies, Echo offers a secure, responsive, and user-friendly experience.
 
+![Screenshot 1](./Frontend/public/Screenshots/S1.png)
 
 
 ---
@@ -11,6 +12,9 @@
 **Frontend**
 - ⚛️ React.js
 - 💨 Tailwind CSS
+
+![Screenshot 1](./Frontend/public/Screenshots/S2.png)
+
 
 **Backend**
 - 🟩 Node.js
@@ -41,6 +45,11 @@ This structured design improves query performance, makes the schema scalable, an
 
 ---
 
+<img src="./Frontend/public/Screenshots/S6.png" width="650" />
+
+
+
+
 ## 🔐 Features
 
 - User authentication (JWT & secure cookies)
@@ -51,6 +60,10 @@ This structured design improves query performance, makes the schema scalable, an
 - RESTful API for frontend-backend communication
 
 ---
+![Screenshot 1](./Frontend/public/Screenshots/S3.png)
+![Screenshot 1](./Frontend/public/Screenshots/S4.png)
+![Screenshot 1](./Frontend/public/Screenshots/S5.png)
+
 ## 📁 Project Structure
 
 echo/
