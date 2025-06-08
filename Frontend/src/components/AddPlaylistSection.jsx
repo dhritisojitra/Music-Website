@@ -62,7 +62,6 @@ const AddPlaylistSection = () => {
       console.error(err);
     }
   };
-
   // Delete a playlist
   const handleDeletePlaylist = async (playlist_ID) => {
     try {
